@@ -1,0 +1,23 @@
+#+Title: Ganes To Do
+
+* Player Abilities
+** Paladin Abilities
+**** Spell Listing
+for ability in paladinAbilities:
+    print(f"Name: {ability.name}, SP Cost: {ability.spCost}, Spell Effect: {ability.spellEffect}")
+*** DONE Divine Justice -> 2 SP Instant Damage of 40 Hit points
+*** DONE Holy Salvation -> 1SP Heal for 30 HP 
+*** DONE Lights Armor -> 1 SP Add 8 Armor on top of base armor 
+**** TODO Chnage langauge around Paladin Spell Effect to display either Damage or Healing or Armor increase
+
+
+* Aracnid Abilities
+** DONE Venom -> 1 SP Add 5 Damage to basic attacks (Poison)
+*** Skalash Abilities
+** DONE Web -> 3 SP Enweb player, stuning them disallowing the cast
+
+
+
+* Battle One Needs
+** TODO Add crit chance into battle sequence
+** DONE Subtract Damage by Defense Number

@@ -21,3 +21,5 @@ for ability in paladinAbilities:
 * Battle One Needs
 ** TODO Add crit chance into battle sequence
 ** DONE Subtract Damage by Defense Number
+
+* TODO Enums for selection

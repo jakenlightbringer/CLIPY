@@ -38,7 +38,7 @@ def enemyLogic(enemy, venom, enweb, player, attackTurn):
 
 def battleOne(player):
         #enemy loot table
-        aracnidLoot = ["Spider Cloth Cloak", "Venom Infused Ringet, Spider Fangs"]
+        aracnidLoot = ["Spider Cloth Cloak", "Venom Infused Ring"]
         #Enemy built
         aracnidEnemy = enemyBuilder.EnemyBuilder("Skalash", 60, 18, 5, random.choice(aracnidLoot), 3)
         print("\n Oh Paladin, so naive you think you can cleanse these land of our corruption.")
@@ -130,13 +130,27 @@ def battleOne(player):
                 enemyAbilitySelection = enemyLogic(aracnidEnemy, venom, enweb, player, playerAttackTurn)
                 if(enemyAbilitySelection == 1):
                     print(f"\n{aracnidEnemy.name} attacks you for {aracnidEnemy.attackValue}. You blocked {player.baseDefense}")
+                    print(f"You have {player.baseHealth} Health remaining")
                 playerAttackTurn = True
                 if(enemyAbilitySelection == 2):
                     print(f"\n{aracnidEnemy.name} attacks you with {venom.name} for {venom.spellEffect}. You blocked {player.baseDefense}")
+                    print(f"You have {player.baseHealth} Health remaining")
                 playerAttackTurn = True
                 if(enemyAbilitySelection == 3):
                     print(f"\n{aracnidEnemy.name} attacks you with {enweb.name}. Stunning you for one turn.")
                 playerAttackTurn = False
+        if(aracnidEnemy.hitpoints <= 0):
+            print(f'You have defeated {aracnidEnemy.name}. You search the disgusting creatures corpse and find a {aracnidEnemy.lootTable}.')
+            if(aracnidEnemy.lootTable == "Spider Cloth Cloak"):
+                print("You equip the cloak and you increase your defense by 5")
+                player.baseDefense += 5
+            if(aracnidEnemy.lootTable == "Venom Infused Ring"):
+                print("You equip the ring and increase your Damage by 5")
+                player.baseDamage += 5
+        if(player.baseHealth <= 0):
+            print("You Lose!")
+            return 0
+
                 
 
                 

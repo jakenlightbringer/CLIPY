@@ -1,10 +1,21 @@
 #+Title: Ganes To Do
 
+* Large Needs
+** Encapsulation
+create a module (file) for each of the enemies that will be included in the game as well as player. Call these rather than calling the build enemy. 
+This will add in the ability to have the player and enemy spells within the Class itself
+
+THINK FACTORIO 
+*** Varibles
+make the hard coded values variables rather than hard coded values within the encapsulated modules
+
+** Enums
+Have enums within the player input rather than stirng inputs
+
 * Player Abilities
 ** Paladin Abilities
 **** Spell Listing
-for ability in paladinAbilities:
-    print(f"Name: {ability.name}, SP Cost: {ability.spCost}, Spell Effect: {ability.spellEffect}")
+
 *** DONE Divine Justice -> 2 SP Instant Damage of 40 Hit points
 *** DONE Holy Salvation -> 1SP Heal for 30 HP 
 *** DONE Lights Armor -> 1 SP Add 8 Armor on top of base armor 

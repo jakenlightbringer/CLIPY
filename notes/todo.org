@@ -1,0 +1,49 @@
+#+Title: Ganes To Do
+
+* Large Needs
+** Encapsulation
+create a module (file) for each of the enemies that will be included in the game as well as player. Call these rather than calling the build enemy. 
+This will add in the ability to have the player and enemy spells within the Class itself
+
+THINK FACTORIO 
+*** Varibles
+make the hard coded values variables rather than hard coded values within the encapsulated modules
+
+** Enums
+Have enums within the player input rather than stirng inputs
+
+* Classes
+
+** Character Class
+baseHP
+baseDefense
+baseAttack
+baseSP
+*** Player Class (Character)
+name
+playableClassSelection
+
+
+
+** Battle Mangaer
+*** Take Enemy (Spider, Wolf Etc)
+*** Take Player (Paladin, Warrior, etc)
+**** Responcibile for battle -> game loop would be Responcibile for passing in battles to the battle Mangaer
+Only battle manager known aspects could allow for more complexity/building upon
+
+
+Inventory class
+    specify slots per toon
+    loot items -> playerWearableSlots
+    enenmy could carry certain items on death drop (rand)
+    
+
+Paladin
+    self.Inventory getItems
+    self.Inventory addItems
+    self.Inventory manageItems
+        weight, display
+    self.Inventory compareItems
+
+Loot Class
+    specific items 

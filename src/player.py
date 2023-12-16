@@ -13,7 +13,6 @@ class Player:
         self.BASE_SP = BASE_SP
         self.BASE_MAX_DAMAGE = BASE_MAX_DAMAGE
 
-    
 
     def playerAttack(self):
         playerAttackValue = random.randrange(self.BASE_ATTACK, self.BASE_MAX_DAMAGE)
@@ -21,6 +20,8 @@ class Player:
     
     def playerDefend(self):
         pass
+        #20 % dmg reduction -? can go up to 25
+        #multiply by .8 for 20
         
     def getCurrentHealth(self):
         return self.currentHealth

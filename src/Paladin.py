@@ -4,7 +4,7 @@ import random
 class PaladinClass(Player):
     defaultHeath = 120
     BASE_ATTACK = 20
-    BASE_DEFENSE = 6
+    BASE_DEFENSE = 25 #will be percent
     BASE_SP = 3
     BASE_MAX_DAMAGE = 28
 

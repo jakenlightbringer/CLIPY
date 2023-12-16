@@ -187,14 +187,14 @@ def gameLoop():
         
         newEnemy = getEnemy()
         
-        while(playerInstance.currentHealth > 0 or newEnemy.getCurrentHealth() > 0):
+        while(playerInstance.currentHealth >= 0 and newEnemy.getCurrentHealth() >= 0):
             playerChoice = input("\n1. Attack, 2. Defend, 3. Your Stats, 4. Enemy Stats\n")
             if(playerChoice == '1'):
-                print(f"{playerName} attacks dealing {playerInstance.playerAttack()} damage")
-            if(playerChoice == '2'):
                 playerAttack = playerInstance.playerAttack()
                 newEnemy.takeDamage(playerAttack)
                 print(f"{playerName} attacks for {playerAttack} damage. {newEnemy.name} has {newEnemy.getCurrentHealth()} HP")
+            if(playerChoice == '2'):
+                pass 
             if(playerChoice == '3'):
                 print(playerInstance)
             if(playerChoice == '4'):

@@ -19,5 +19,3 @@ class Spider(Enemy):
     def __str__(self) -> str:
         return super().__str__()
 
-spider = Spider()
-print(spider)

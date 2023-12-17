@@ -53,9 +53,7 @@ game loop (while !dead) {
 '''
 
 
-def enemyActionSelection():
-    attackSelection = random.randrange(1, 3)
-    return attackSelection
+
 
 
 
@@ -132,10 +130,9 @@ def gameLoop():
         while(playerInstance.currentHealth >= 0 and newEnemy.getCurrentHealth() >= 0):
             playerChoice = input("\n1. Attack, 2. Defend, 3. Your Stats, 4. Enemy Stats\n")
             damage = battleMgr.getCombatantsDamageOuput(playerChoice, 0)
-            newEnemy.takeDamage(damage['player_damage']) #playerAttack
             print(damage)
-            print(newEnemy.getCurrentHealth())
-            playerInstance.takeDamage(damage['enemy_damage']) #enemyAttack
+            #print(newEnemy.getCurrentHealth())
+           
         
         
         

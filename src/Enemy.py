@@ -1,7 +1,8 @@
 import random
 from ability import Ability
+from basecharacter import BaseCharacter
 
-class Enemy:
+class Enemy(BaseCharacter):
     currentHealth = 0
 
     def __init__(self, name, BASE_SP, BASE_DEFENSE, BASE_HITPOINTS, BASE_ATTACK, BASE_MAX_DAMAGE):
@@ -33,14 +34,3 @@ class Enemy:
         return damageReduction
 
     
-    #can add any objects in the init to display all
-    def __str__(self) -> str:
-        return (
-        f"{self.name} attributes:\n"
-        f"Attack: {self.BASE_ATTACK}\n"
-        f"Defense: {self.BASE_DEFENSE}\n"
-        f"Hitpoints: {self.BASE_HITPOINTS}\n"
-        #f"BASE_SP: {self.BASE_SP}\n"
-        #f"ability: {self.ability}\n"
-        #f"currentHealth: {self.currentHealth}\n"
-    )

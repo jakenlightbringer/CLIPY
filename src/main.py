@@ -1,3 +1,4 @@
+from battlemanager import BattleManager
 import startPlayer
 import random
 from Spider import Spider
@@ -23,129 +24,6 @@ Tutorial battle
         view enemy stats
     
 '''
-
-'''
-def battleOne(player):
-        #enemy loot table
-        #aracnidLoot = ["Spider Cloth Cloak", "Venom Infused Ring"]
-        #Enemy built
-        aracnidEnemy = enemyBuilder.EnemyBuilder("Skalash", 60, 18, 5, random.choice(aracnidLoot), 3)
-        print("\n Oh Paladin, so naive you think you can cleanse these land of our corruption.")
-        print("I am Skalash, servant of Spider Lord Vandris. YOU WILL DIE")
-        #battle loop
-        while(player.baseHealth and aracnidEnemy.hitpoints > 0):
-            playerAttackTurn = True
-            if(playerAttackTurn == True):
-                pAttackValue = player.playerAttack()
-                enemyDefenseValue = aracnidEnemy.blockValue
-                paladinAbilities = startPlayer.getPlayerAbilities(player.baseClass)
-                #Defines player action (Chosing between abilities or basic attacks, can see enemy stats as well)
-                playerActionTaken = False
-                while(playerActionTaken == False):
-                    print("\nEnter Your Action\n")
-                    playerAction = input("\n1. Basic Attack\n2. See Abilities List \n3. See Enemy Stats\n")
-                    if(playerAction == "1"):
-                        aracnidEnemy.hitpoints -= pAttackValue 
-                        aracnidEnemy.hitpoints += enemyDefenseValue
-                        aracnidEnemy.hitpoints + enemyDefenseValue
-                        print(f"You attacked {aracnidEnemy.name} for {pAttackValue}. {aracnidEnemy.name} blocked {enemyDefenseValue} damage.")
-                        print(f"{aracnidEnemy.name} has {aracnidEnemy.hitpoints} hit points left.")
-                        playerActionTaken = True
-                        playerAttackTurn = False
-                    elif(playerAction == "2"):
-                        divineJustice = None
-                        holySalvation = None
-                        lightsArmor = None
-                        #Paladin spell implementation/Assignment
-                        for ability in paladinAbilities:
-                            if(ability.name == "Divine Justice"):
-                                divineJustice = ability
-                            elif(ability.name == "Holy Salvation"):
-                                holySalvation = ability
-                            elif(ability.name == "Light's Armor"):
-                                lightsArmor = ability
-                            print(f"Name: {ability.name}, SP Cost: {ability.spCost}, Spell Effect: {ability.spellEffect}")
-                        print('\nPlease select an Ability or Return\n')
-                        
-                        playerAbilitySelection = input("\n1. Divine Justice\n2. Holy Salvation\n3. Light's Armor\n")
-                        #Divine Justice Spell implementation
-                        if(playerAbilitySelection == "1"):
-                            player.baseSP -= divineJustice.spCost
-                            aracnidEnemy.hitpoints -= divineJustice.spellEffect
-                            print(f'You cast {divineJustice.name} dealing {divineJustice.spellEffect} damage. {aracnidEnemy.name} has {aracnidEnemy.hitpoints} hitpoints left')
-                            print(f"You have {player.baseSP} skillpoints left")
-                            playerActionTaken = True
-                            playerAttackTurn = False
-                        if(playerAbilitySelection == "2"):
-                            if player.baseHealth == 120:
-                                print(f"It seems that the heat of the battle has caused you to waste your {holySalvation.name}. It has no effect as you do not have any wounds.")
-                                player.baseSP -= holySalvation.spCost
-                                playerActionTaken = True
-                                playerAttackTurn = False
-                            elif player.baseHealth < 120:
-                                player.baseSP -= holySalvation.spCost
-                                print(f"The light graces you and feel its warmth across your skin")
-                                print(f"{holySalvation.name} heals you for {holySalvation.spellEffect}. Your have {player.baseHealth} health and {player.baseSP} skill points.")
-                        if(playerAbilitySelection == "3"):
-                            player.baseDefense += lightsArmor.spellEffect
-                            player.baseSP -= lightsArmor.spCost
-                            print(f'You Case {lightsArmor.name}, increasing your armor by {lightsArmor.spellEffect}.')
-                            print(f"You now have {player.baseSP} skillpoints remaining")
-                            playerActionTaken = True
-                            playerAttackTurn = False
-                    elif(playerAction == "3"):
-                        print(f"Enemy Name: {aracnidEnemy.name}\nEnemy HP: {aracnidEnemy.hitpoints}\nEnemy Attack Value: {aracnidEnemy.attackValue}\nEnemy Defense Value{enemyDefenseValue}\n")
-                        playerActionTaken = False
-                    else:
-                        print("Invalid selection. Please choose a valid action.")
-                  
-                
-
-                
-                
-                playerAttackTurn = False
-            
-            #Defining and assigning Enemy Abilities
-            enemyAbilities = spellBuiler.setAracnidAbilities()
-            for eAbility in enemyAbilities:
-                if(eAbility.name == "Venom"):
-                    venom = eAbility
-                elif(eAbility.name == "Enweb"):
-                    enweb = eAbility
-            #set if result = attackturn -> set playerattack turn
-            if(playerAttackTurn == False):
-                enemyAttackValue = aracnidEnemy.attackValue
-                playerDefenseValue = player.baseDefense
-                enemyAbilitySelection = enemyLogic(aracnidEnemy, venom, enweb, player, playerAttackTurn)
-                if(enemyAbilitySelection == 1):
-                    print(f"\n{aracnidEnemy.name} attacks you for {aracnidEnemy.attackValue}. You blocked {player.baseDefense}")
-                    print(f"You have {player.baseHealth} Health remaining")
-                playerAttackTurn = True
-                if(enemyAbilitySelection == 2):
-                    print(f"\n{aracnidEnemy.name} attacks you with {venom.name} for {venom.spellEffect}. You blocked {player.baseDefense}")
-                    print(f"You have {player.baseHealth} Health remaining")
-                playerAttackTurn = True
-                if(enemyAbilitySelection == 3):
-                    print(f"\n{aracnidEnemy.name} attacks you with {enweb.name}. Stunning you for one turn.")
-                playerAttackTurn = False
-        if(aracnidEnemy.hitpoints <= 0):
-            print(f'You have defeated {aracnidEnemy.name}. You search the disgusting creatures corpse and find a {aracnidEnemy.lootTable}.')
-            if(aracnidEnemy.lootTable == "Spider Cloth Cloak"):
-                print("You equip the cloak and you increase your defense by 5")
-                player.baseDefense += 5
-            if(aracnidEnemy.lootTable == "Venom Infused Ring"):
-                print("You equip the ring and increase your Damage by 5")
-                player.baseDamage += 5
-        if(player.baseHealth <= 0):
-            print("You Lose!")
-            return 0
-
-'''
-
-
-
-
-
 
 
 def getName():
@@ -173,44 +51,108 @@ game loop (while !dead) {
 }
 
 '''
-# Need figure out way to determine what enemy passed into the game loop
-#options are hardcode which enemy is coming or randomize enemy
-def enemyClassSelection(battleCount):
-    if(battleCount == 1):
-        return Spider()
 
 
 def enemyActionSelection():
-    attackSelection = random.randrange(1, 2)
+    attackSelection = random.randrange(1, 3)
     return attackSelection
+
+
+
+
+
 
 def gameLoop():
     #determine battle count
     battleCount = 1
 
+    battleMgr = BattleManager()
     while(True):
         
-        newEnemy = enemyClassSelection(battleCount)
+        newEnemy = battleMgr.getEnemyClassSelection(battleCount)
         ATTACK = '1'
         DEFEND = '2'
         PLAYER_STATS = '3'
         ENEMY_STATS = '4'
 
+        '''
+        
+            Enemy & Player Type
         
         
+            playerAction
+            EnemyAction
+            
+            initiative = rand(player or enemy)
+            
+             getBattleResult(playeraction,  , initiative)
+                {player_damage_taken, enemy_damage_taken}
+
+            roundOutcome = {
+                "player_damage" : 10
+                "enemy_damage" : 5
+            }
+            
+            print (roundOutcome['player_damage']) #10
+            
+            
+            
+            
+            while (!done or dead)
+
+                if (enemy or player status)
+                    displayStats
+                else                
+                    if (player_initiative)
+                        getPlayerAction()
+                        TakePlayerAction()
+                        if (TakePlayerAction() == PLAYER or ENEMY stats)
+                            pass
+                        if (EnemeyIsNotDead)
+                            TakeEnemyAction()
+                    else
+                        TakeEnemyAction()
+                        getPlayerAction()
+                        if (PlayerIsNotDead)
+                            TakePlayerAction()
+                    
+                    If EnemyIsDead
+                        break;
+                    if PlayerIsDead
+                        return player_dead
+                    
+        def endGame()
+            print end game stas
+                Total enemies killed
+                total damange taken
+                total damage done
+                total rounds
+                new high in any stat 
+        ''' 
+        while(playerInstance.currentHealth >= 0 and newEnemy.getCurrentHealth() >= 0):
+            playerChoice = input("\n1. Attack, 2. Defend, 3. Your Stats, 4. Enemy Stats\n")
+            damage = battleMgr.getCombatantsDamageOuput(playerChoice, 0)
+            newEnemy.takeDamage(damage['player_damage']) #playerAttack
+            print(damage)
+            print(newEnemy.getCurrentHealth())
+            playerInstance.takeDamage(damage['enemy_damage']) #enemyAttack
+        
+        
+        
+        '''
         while(playerInstance.currentHealth >= 0 and newEnemy.getCurrentHealth() >= 0):
             playerChoice = input("\n1. Attack, 2. Defend, 3. Your Stats, 4. Enemy Stats\n")
             if(playerChoice == ATTACK):
                 playerAttack = playerInstance.playerAttack()
-                newEnemy.takeDamage(playerAttack)
+                
                 print(f"{playerName} attacks for {playerAttack} damage. {newEnemy.name} has {newEnemy.getCurrentHealth()} HP")
-            elif(playerChoice == DEFEND):
+            elif(playerChoice == DEFEND ) :
                 enemyDamge = newEnemy.enemyAttackValue()
                 playerDamageReduction = enemyDamge * playerInstance.playerDefend()
                 enemyDamge -= playerDamageReduction
                 playerInstance.takeDamage(enemyDamge)
             elif(playerChoice == PLAYER_STATS):
-                print(playerInstance)
+                print(playerInstance) 
             elif(playerChoice == ENEMY_STATS):
                 print(newEnemy)
             if(enemyActionSelection() == 1):
@@ -221,34 +163,31 @@ def gameLoop():
             elif(enemyActionSelection() == 2):
                 print(enemyActionSelection())
                 playerDamage = playerInstance.playerAttack()
-                enemyDamageReduction = enemyDamge * playerInstance.playerDefend()
+                enemyDamageReduction = playerDamage * playerInstance.playerDefend()
                 playerDamage -= enemyDamageReduction
                 newEnemy.takeDamage(playerDamage)
                 print('Defend')
 
         if(newEnemy.getCurrentHealth() <= 0):
             print("\nYou've Killed Your Enemy!")
+            print(f"\n You have {playerInstance.getCurrentHealth()} health remaining.")
         if(playerInstance.getCurrentHealth() <= 0):
             print("Youve Lost!")
 
         break
-    
-
-
-
-
-
-
+        '''
+        
+        
 
 def main():
     
     
     
     
-    print(playerInstance)
+    
 
 
-    if playerInstance.baseClass == "Paladin":
+    if playerInstance.name == "Paladin":
         print("\nYou survey the battlefield before you. The crescendo and clash of plate scream across the wartorn barrens.")
         print(f"Brother {playerName}, a voice calls out. Brother Eziekiel and Brother Addonis have been taken by the scorpids into the cave")
         print("You turn to see the aracnid creatures dragging away two of your fellow brethren into the dark lair")

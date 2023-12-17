@@ -40,6 +40,9 @@ def getName():
 def getClass(playerName):
     print("Hello " + playerName + " Please select your class!\n")
     
+    #TODO
+    return Paladin.PaladinClass()
+    
     while(True):
         playerClass = input("1. Paladin\n 2. Warrior \n 3. Mage\n")
         if (playerClass == "1"):

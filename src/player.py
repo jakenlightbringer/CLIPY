@@ -1,11 +1,11 @@
 import random
+from basecharacter import BaseCharacter
 
-
-class Player:
+class Player(BaseCharacter):
     currentHealth = 0
     
     def __init__(self, baseClass, BASE_HITPOINTS, BASE_ATTACK, BASE_MAX_DAMAGE, BASE_DEFENSE, BASE_SP):
-        self.baseClass = baseClass
+        self.name = baseClass
         self.BASE_HITPOINTS = BASE_HITPOINTS
         self.currentHealth = BASE_HITPOINTS
         self.BASE_ATTACK = BASE_ATTACK
@@ -28,16 +28,3 @@ class Player:
     def takeDamage(self, damageValue):
         self.currentHealth = self.currentHealth - damageValue
         return self.getCurrentHealth()
-
-    
-    
-    def __str__(self) -> str:
-        return (
-        f"Player Attributes:\n"
-        f"Attack: {self.BASE_ATTACK}\n"
-        f"Defense: {self.BASE_DEFENSE}\n"
-        f"Hitpoints: {self.BASE_HITPOINTS}\n"
-        #f"BASE_SP: {self.BASE_SP}\n"
-        #f"ability: {self.ability}\n"
-        #f"currentHealth: {self.currentHealth}\n"
-    )   

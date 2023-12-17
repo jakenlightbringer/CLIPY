@@ -5,7 +5,7 @@ from ability import Ability
 class Spider(Enemy):
     defaultHeath = 70
     BASE_DAMAGE = 12
-    BASE_DEFENSE = 3
+    BASE_DEFENSE = 15
     BASE_SP = 3
     BASE_MAX_DAMAGE = 18
 

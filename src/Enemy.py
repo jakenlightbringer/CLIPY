@@ -28,7 +28,9 @@ class Enemy:
     def enemyLogic(self):
         pass
         #define enenmy attack logic to be passed to battlemanager
-        
+    def playerDefend(self):
+        damageReduction = self.BASE_DEFENSE / 100
+        return damageReduction
 
     
     #can add any objects in the init to display all

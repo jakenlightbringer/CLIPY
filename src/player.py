@@ -19,9 +19,8 @@ class Player:
         return playerAttackValue
     
     def playerDefend(self):
-        pass
-        #20 % dmg reduction -? can go up to 25
-        #multiply by .8 for 20
+        damageReduction = self.BASE_DEFENSE / 100
+        return damageReduction
         
     def getCurrentHealth(self):
         return self.currentHealth

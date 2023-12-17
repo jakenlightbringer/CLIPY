@@ -18,5 +18,7 @@ class PaladinClass(Player):
         print(self.BASE_MAX_DAMAGE)
         playerAttackValue = random.randrange(self.BASE_ATTACK, self.BASE_MAX_DAMAGE)
         return playerAttackValue
-        
-    
+
+"""damage = 20
+damageReduction = damage * sample.playerDefend()
+damage -= damageReduction"""

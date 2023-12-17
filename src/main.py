@@ -175,34 +175,61 @@ game loop (while !dead) {
 '''
 # Need figure out way to determine what enemy passed into the game loop
 #options are hardcode which enemy is coming or randomize enemy
+def enemyClassSelection(battleCount):
+    if(battleCount == 1):
+        return Spider()
 
 
-def getEnemy():
-    return Spider()
+def enemyActionSelection():
+    attackSelection = random.randrange(1, 2)
+    return attackSelection
 
 def gameLoop():
     #determine battle count
-    battleCount = 0
+    battleCount = 1
+
     while(True):
         
-        newEnemy = getEnemy()
+        newEnemy = enemyClassSelection(battleCount)
+        ATTACK = '1'
+        DEFEND = '2'
+        PLAYER_STATS = '3'
+        ENEMY_STATS = '4'
+
+        
         
         while(playerInstance.currentHealth >= 0 and newEnemy.getCurrentHealth() >= 0):
             playerChoice = input("\n1. Attack, 2. Defend, 3. Your Stats, 4. Enemy Stats\n")
-            if(playerChoice == '1'):
+            if(playerChoice == ATTACK):
                 playerAttack = playerInstance.playerAttack()
                 newEnemy.takeDamage(playerAttack)
                 print(f"{playerName} attacks for {playerAttack} damage. {newEnemy.name} has {newEnemy.getCurrentHealth()} HP")
-            if(playerChoice == '2'):
-                pass 
-            if(playerChoice == '3'):
+            elif(playerChoice == DEFEND):
+                enemyDamge = newEnemy.enemyAttackValue()
+                playerDamageReduction = enemyDamge * playerInstance.playerDefend()
+                enemyDamge -= playerDamageReduction
+                playerInstance.takeDamage(enemyDamge)
+            elif(playerChoice == PLAYER_STATS):
                 print(playerInstance)
-            if(playerChoice == '4'):
+            elif(playerChoice == ENEMY_STATS):
                 print(newEnemy)
+            if(enemyActionSelection() == 1):
+                print(enemyActionSelection())
+                enemyAttack = newEnemy.enemyAttackValue()
+                playerInstance.takeDamage(enemyAttack)
+                print(f"{newEnemy.name} attacks for {enemyAttack} damage. {playerName} has {playerInstance.getCurrentHealth()} HP")
+            elif(enemyActionSelection() == 2):
+                print(enemyActionSelection())
+                playerDamage = playerInstance.playerAttack()
+                enemyDamageReduction = enemyDamge * playerInstance.playerDefend()
+                playerDamage -= enemyDamageReduction
+                newEnemy.takeDamage(playerDamage)
+                print('Defend')
 
-            
-
-
+        if(newEnemy.getCurrentHealth() <= 0):
+            print("\nYou've Killed Your Enemy!")
+        if(playerInstance.getCurrentHealth() <= 0):
+            print("Youve Lost!")
 
         break
     

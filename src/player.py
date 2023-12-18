@@ -28,27 +28,28 @@ class Player(BaseCharacter):
     playerName = random.choice(NameList)
     currentHealth = 0
     
-    def __init__(self, baseClass, BASE_HITPOINTS, BASE_ATTACK, BASE_MAX_DAMAGE, BASE_DEFENSE, BASE_SP):
+    def __init__(self, baseClass, hitpoints, attack, maxDamage, defense, spellPoints):
+        self.currentHealth = hitPoints
+        self.spellPoints = spellPoints        
+        self.hitPoints = hitPoints        
+        self.maxDamage = maxDamage
+        self.defense = defense        
         self.name = baseClass
-        self.BASE_HITPOINTS = BASE_HITPOINTS
-        self.currentHealth = BASE_HITPOINTS
-        self.BASE_ATTACK = BASE_ATTACK
-        self.BASE_DEFENSE = BASE_DEFENSE
-        self.BASE_SP = BASE_SP
-        self.BASE_MAX_DAMAGE = BASE_MAX_DAMAGE
+        self.attack = attack
+        
 
     def setPlayerName(self, name):
         self.playerName = name
-        
+
     def getPlayerName():
         return self.playerName
 
     def playerAttack(self):
-        playerAttackValue = random.randrange(self.BASE_ATTACK, self.BASE_MAX_DAMAGE)
+        playerAttackValue = random.randrange(self.attack, self.maxDamage)
         return playerAttackValue
     
     def playerDefend(self):
-        damageReduction = self.BASE_DEFENSE / 100
+        damageReduction = self.defense / 100
         return damageReduction
         
     def getCurrentHealth(self):

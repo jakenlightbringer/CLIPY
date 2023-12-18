@@ -2,8 +2,8 @@
 class GameStats:
     totalEnemiesDefeated = 0
     totalDamageTaken = 0
-    totalDamageDone = 0
-    totalRoundsPlayed = 1
+    totalDamageDealt = 0
+    totalRoundsPlayed = 0
 
     def incrementRound(self):
         self.totalRoundsPlayed += 1
@@ -14,6 +14,12 @@ class GameStats:
     def addDamageTaken(self, damage):
         self.totalDamageTaken += damage
     
-    def addDamageDone(self, damage):
-        self.totalDamageDone += damage
+    def addDamageDealt(self, damage):
+        self.totalDamageDealt += damage
 
+    def __str__(self):
+        return (f"Total Rounds: {self.totalRoundsPlayed} \
+            Enemies Defeated: {self.totalEnemiesDefeated} \
+            Damage Dealt: {self.totalDamageDealt} \
+            Damage Taken: {self.totalDamageTaken}"
+        )

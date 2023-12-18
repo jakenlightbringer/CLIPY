@@ -121,7 +121,7 @@ def gameLoop():
                 new high in any stat 
         ''' 
         while(playerInstance.currentHealth >= 0 and newEnemy.getCurrentHealth() >= 0):
-            playerChoice = input("\n1. Attack, 2. Defend, 3. Your Stats, 4. Enemy Stats\n")
+            playerChoice = int(input("\n1. Attack, 2. Defend, 3. Your Stats, 4. Enemy Stats\n"))
             damage = battleMgr.getCombatantsDamageOuput(playerChoice, 0)
             print(damage)
             #print(newEnemy.getCurrentHealth())

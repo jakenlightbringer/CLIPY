@@ -6,22 +6,22 @@ import random
 #options are hardcode which enemy is coming or randomize enemy
 
 class BattleManager:
-    currentEnemy = Spider()
-    
+    ATTACK = 1
+    DEFEND = 2
+    PLAYER_STATS = 3
+    ENEMY_STATS = 4
+
+    currentEnemy = Spider()    
     
     def getEnemyClassSelection(self, battleCount):
-        return self.currentEnemy
-    def takePlayerAction(self, playerAction):
+        return self.currentEnemy        
+    def takePlayerAction(self, playerAction):        
         result = None
-        P_ATTACK = '1'
-        P_DEFEND = '2'
-        PLAYER_STATS = '3'
-        ENEMY_STATS = '4'
         playerInstance = PaladinClass()
         
-        if (playerAction == P_ATTACK):
+        if (playerAction == self.ATTACK):
             result = playerInstance.playerAttack()
-        if (playerAction == P_DEFEND):
+        if (playerAction == self.DEFEND):
             result = playerInstance.playerDefend()
         
         return result
@@ -33,9 +33,9 @@ class BattleManager:
         return enemyActionSelection
     
     def takeEnemyAction(self, enemyActionSelection):
-        E_ATTACK = 1
-        E_DEFEND = 2
-        if(enemyActionSelection == E_ATTACK):
+        #E_ATTACK = 1
+        #E_DEFEND = 2
+        if(enemyActionSelection == self.ATTACK):
             enemy = self.getEnemyClassSelection(1)
             enemyAttackValue = enemy.enemyAttackValue()
             return enemyAttackValue
@@ -46,17 +46,17 @@ class BattleManager:
         battleCount = 1
         
         enemy = self.getEnemyClassSelection(battleCount)
-        playerInstance = PaladinClass()
-        
+
+        playerInstance = PaladinClass()        
         enemySelection = self.getEnemyAction()
+                
         
-        
-        
-        if(playerAction == "1" and enemySelection == 1):
-            playerAttack = self.takePlayerAction(playerAction)
+        if(playerAction == self.ATTACK and enemySelection == self.ATTACK):
+            playerAttack = self.takePlayerAction(playerAction)            
             enemyResult = self.takeEnemyAction(enemySelection)
+
             roundResult = {
-                'player_damage_given' : playerInstance.playerAttack(),
+                'player_damage_given' : playerAttack,
                 'player_damage_taken' : playerInstance.takeDamage(enemyResult),
                 'player_current_health': playerInstance.getCurrentHealth(),
                 

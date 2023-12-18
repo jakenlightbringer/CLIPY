@@ -33,8 +33,6 @@ class BattleManager:
         return enemyActionSelection
     
     def takeEnemyAction(self, enemyActionSelection):
-        #E_ATTACK = 1
-        #E_DEFEND = 2
         if(enemyActionSelection == self.ATTACK):
             enemy = self.getEnemyClassSelection(1)
             enemyAttackValue = enemy.enemyAttackValue()

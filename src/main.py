@@ -26,16 +26,13 @@ Tutorial battle
 '''
 
 
-def getName():
-        print("Welcome Adventurer! Please enter your name to begin\n")
-        #name = input("")
-        #return name
-        return "jake"
+
+
+playerInstance = startPlayer.getClass()
+playerName = playerInstance.getPlayerName()
 
 
 
-playerName = getName()
-playerInstance = startPlayer.getClass(playerName)
 
 '''
 def getNewEnemy()
@@ -68,10 +65,6 @@ def gameLoop():
     while(True):
         
         newEnemy = battleMgr.getEnemyClassSelection(battleCount)
-        ATTACK = '1'
-        DEFEND = '2'
-        PLAYER_STATS = '3'
-        ENEMY_STATS = '4'
 
         '''
         

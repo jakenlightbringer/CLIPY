@@ -40,8 +40,8 @@ class Player(BaseCharacter):
 
     def setPlayerName(self, name):
         self.playerName = name
-
-    def getPlayerName():
+        
+    def getPlayerName(self):
         return self.playerName
 
     def playerAttack(self):

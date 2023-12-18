@@ -9,7 +9,7 @@ def gameLoop(playerInstance):
     #determine battle count
     battleCount = 0
 
-    battleMgr = BattleManager()
+    battleMgr = BattleManager(playerInstance)
     gameStats = GameStats()
 
     #todo handle player death and/or game exit
@@ -24,8 +24,8 @@ def gameLoop(playerInstance):
             gameStats.addDamageTaken(damage['player_damage_taken'])
             gameStats.addDamageDealt(damage['player_damage_given'])
             gameStats.incrementRound()
-            print(f"{playerInstance.name} {damage['player_action']}, dealing {damage['player_damage_given']} damage. {playerInstance.name} has {damage['player_current_health']} remaining")
-            print(f"{newEnemy.name} {damage['enemy_action']} dealing {damage['enemy_damage_given']} damage. {newEnemy.name} has {damage['enemy_current_health']} remaining.")
+            print(f"{playerInstance.name} {damage['player_action']}, dealing {damage['player_damage_given']} damage. {playerInstance.name} has {damage['player_current_health']} remaining health")
+            print(f"{newEnemy.name} {damage['enemy_action']} dealing {damage['enemy_damage_given']} damage. {newEnemy.name} has {damage['enemy_current_health']} remaining health.")
             #print(newEnemy.getCurrentHealth())
         if(newEnemy.getCurrentHealth() <= 0 and playerInstance.getCurrentHealth() >= 0):
             print("Youve Defeated your Enemy!\n")

@@ -25,37 +25,8 @@ Tutorial battle
     
 '''
 
-
-
-
 playerInstance = startPlayer.getClass()
 playerName = playerInstance.getPlayerName()
-
-
-
-
-'''
-def getNewEnemy()
-  return spider()
-
-game loop (while !dead) {
-   enemy = getNewEnemy()
-   battleLoop (while player || enemy !dead) {
-    enemy vs player    
-   }
-
-   
-}
-
-'''
-
-
-
-
-
-
-
-
 
 def gameLoop():
     #determine battle count
@@ -125,47 +96,6 @@ def gameLoop():
             damage = battleMgr.getCombatantsDamageOuput(playerChoice, 0)
             print(damage)
             #print(newEnemy.getCurrentHealth())
-           
-        
-        
-        
-        '''
-        while(playerInstance.currentHealth >= 0 and newEnemy.getCurrentHealth() >= 0):
-            playerChoice = input("\n1. Attack, 2. Defend, 3. Your Stats, 4. Enemy Stats\n")
-            if(playerChoice == ATTACK):
-                playerAttack = playerInstance.playerAttack()
-                
-                print(f"{playerName} attacks for {playerAttack} damage. {newEnemy.name} has {newEnemy.getCurrentHealth()} HP")
-            elif(playerChoice == DEFEND ) :
-                enemyDamge = newEnemy.enemyAttackValue()
-                playerDamageReduction = enemyDamge * playerInstance.playerDefend()
-                enemyDamge -= playerDamageReduction
-                playerInstance.takeDamage(enemyDamge)
-            elif(playerChoice == PLAYER_STATS):
-                print(playerInstance) 
-            elif(playerChoice == ENEMY_STATS):
-                print(newEnemy)
-            if(enemyActionSelection() == 1):
-                print(enemyActionSelection())
-                enemyAttack = newEnemy.enemyAttackValue()
-                playerInstance.takeDamage(enemyAttack)
-                print(f"{newEnemy.name} attacks for {enemyAttack} damage. {playerName} has {playerInstance.getCurrentHealth()} HP")
-            elif(enemyActionSelection() == 2):
-                print(enemyActionSelection())
-                playerDamage = playerInstance.playerAttack()
-                enemyDamageReduction = playerDamage * playerInstance.playerDefend()
-                playerDamage -= enemyDamageReduction
-                newEnemy.takeDamage(playerDamage)
-                print('Defend')
-
-        if(newEnemy.getCurrentHealth() <= 0):
-            print("\nYou've Killed Your Enemy!")
-            print(f"\n You have {playerInstance.getCurrentHealth()} health remaining.")
-        if(playerInstance.getCurrentHealth() <= 0):
-            print("Youve Lost!")
-
-        break
-        '''
         
         
 

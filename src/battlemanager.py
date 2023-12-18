@@ -10,19 +10,19 @@ class BattleManager:
     DEFEND = 2
     PLAYER_STATS = 3
     ENEMY_STATS = 4
-
+    playerInstance = PaladinClass()
     currentEnemy = Spider()    
     
     def getEnemyClassSelection(self, battleCount):
         return self.currentEnemy        
     def takePlayerAction(self, playerAction):        
         result = None
-        playerInstance = PaladinClass()
+        
         
         if (playerAction == self.ATTACK):
-            result = playerInstance.playerAttack()
+            result = self.playerInstance.playerAttack()
         if (playerAction == self.DEFEND):
-            result = playerInstance.playerDefend()
+            result = self.playerInstance.playerDefend()
         
         return result
     
@@ -45,24 +45,33 @@ class BattleManager:
         
         enemy = self.getEnemyClassSelection(battleCount)
 
-        playerInstance = PaladinClass()        
-        enemySelection = self.getEnemyAction()
+            
+        enemyAction = self.getEnemyAction()
                 
         
-        if(playerAction == self.ATTACK and enemySelection == self.ATTACK):
+        if(playerAction == self.ATTACK and enemyAction == self.ATTACK):
             playerAttack = self.takePlayerAction(playerAction)            
-            enemyResult = self.takeEnemyAction(enemySelection)
+            enemyAttack = self.takeEnemyAction(enemyAction)
+            self.playerInstance.takeDamage(enemyAttack)
+            enemy.takeDamage(playerAttack)
+            
 
             roundResult = {
                 'player_damage_given' : playerAttack,
-                'player_damage_taken' : playerInstance.takeDamage(enemyResult),
-                'player_current_health': playerInstance.getCurrentHealth(),
+                'player_damage_taken' : enemyAttack,
+                'player_current_health': self.playerInstance.getCurrentHealth(),
                 
-                'enemy_damage_given' : enemy.enemyAttackValue(),
-                'enemy_damage_taken' : enemy.takeDamage(playerAttack),
+                'enemy_damage_given' : enemyAttack,
+                'enemy_damage_taken' : playerAttack,
                 'enemy_current_health' : enemy.getCurrentHealth()
             }
-            return (roundResult)
+            #return (roundResult)
+        elif(playerAction == self.ATTACK and enemyAction == self.DEFEND):
+            pass
+            
+            
+            
+        return (roundResult)
             
             
         

@@ -47,3 +47,7 @@ Paladin
 
 Loot Class
     specific items 
+
+List of Helmets/Gloves/Shoes
+    Choose randomly from List
+    assign ranom ability or attributes on pickup

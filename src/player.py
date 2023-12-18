@@ -56,5 +56,6 @@ class Player(BaseCharacter):
         return self.currentHealth
     
     def takeDamage(self, damageValue):
+        damageValue = int(damageValue)
         self.currentHealth = self.currentHealth - damageValue
         return self.getCurrentHealth()

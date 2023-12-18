@@ -28,7 +28,7 @@ class Player(BaseCharacter):
     playerName = random.choice(NameList)
     currentHealth = 0
     
-    def __init__(self, baseClass, hitpoints, attack, maxDamage, defense, spellPoints):
+    def __init__(self, baseClass, hitPoints, attack, maxDamage, defense, spellPoints):
         self.currentHealth = hitPoints
         self.spellPoints = spellPoints        
         self.hitPoints = hitPoints        

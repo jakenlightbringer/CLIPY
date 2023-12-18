@@ -2,6 +2,7 @@
 import random
 import Paladin
 from enum import Enum
+from player import Player
 
 class Player:
     def __init__(self, baseClass, baseHealth, baseDamage, baseDefense, baseCrit, baseSP):
@@ -29,16 +30,12 @@ class Player:
 
 
 
-def getName():
-    print("Welcome Adventurer! Please enter your name to begin\n")
-    #name = input("")
-    #return name
-    return "jake"
+
 
 #redefine health values far too low -> Maybe in hundreds range -> For displaying this we could display actual health value? 
 
-def getClass(playerName):
-    print("Hello " + playerName + " Please select your class!\n")
+def getClass():
+    
     
     #TODO
     return Paladin.PaladinClass()

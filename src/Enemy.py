@@ -29,7 +29,7 @@ class Enemy(BaseCharacter):
     def enemyLogic(self):
         pass
         #define enenmy attack logic to be passed to battlemanager
-    def playerDefend(self):
+    def enemyDefend(self):
         damageReduction = self.BASE_DEFENSE / 100
         return damageReduction
 

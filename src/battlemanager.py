@@ -10,6 +10,7 @@ class BattleManager:
     DEFEND = 2
     PLAYER_STATS = 3
     ENEMY_STATS = 4
+    #need a get playerClass function to initilize the player
     playerInstance = PaladinClass()
     currentEnemy = Spider()    
     
@@ -27,16 +28,17 @@ class BattleManager:
         return result
     
     def getEnemyAction(self):
-        #TEMP
-        return 1
         enemyActionSelection = random.randint(1, 2)
         return enemyActionSelection
     
     def takeEnemyAction(self, enemyActionSelection):
         if(enemyActionSelection == self.ATTACK):
-            enemy = self.getEnemyClassSelection(1)
-            enemyAttackValue = enemy.enemyAttackValue()
+            enemy = self.currentEnemy
+            enemyAttackValue = self.currentEnemy.enemyAttackValue()
             return enemyAttackValue
+        elif(enemyActionSelection == self.DEFEND):
+            enemyDefenseValue = self.currentEnemy.enemyDefend()
+            return enemyDefenseValue
         
     
     #returns damage given    
@@ -60,18 +62,77 @@ class BattleManager:
                 'player_damage_given' : playerAttack,
                 'player_damage_taken' : enemyAttack,
                 'player_current_health': self.playerInstance.getCurrentHealth(),
+                'player_action': 'Attacks',
                 
                 'enemy_damage_given' : enemyAttack,
                 'enemy_damage_taken' : playerAttack,
-                'enemy_current_health' : enemy.getCurrentHealth()
+                'enemy_current_health' : enemy.getCurrentHealth(),
+                'enemy_action' : 'Attacks'
             }
-            #return (roundResult)
+            return (roundResult)
         elif(playerAction == self.ATTACK and enemyAction == self.DEFEND):
-            pass
+            playerAttack = self.takePlayerAction(playerAction)
+            enemyDefend = self.takeEnemyAction(enemyAction)
+            enemyAttack = 0
+            #Defense Calculation -> Gets the decimal multiplies by player attack to get damage reduction number -> Subtracts from the attack
+            damageAmountReduced = int(enemyDefend * playerAttack)
+            actualDamageAmount = playerAttack - damageAmountReduced
+            enemy.takeDamage(actualDamageAmount)
+            
+            roundResult = {
+                'player_damage_given' : playerAttack,
+                'player_damage_taken' : enemyAttack,
+                'player_current_health': self.playerInstance.getCurrentHealth(),
+                'player_action': 'Attacks',
+                
+                'enemy_damage_given' : enemyAttack,
+                'enemy_damage_taken' : actualDamageAmount,
+                'enemy_damage_blocked': damageAmountReduced,
+                'enemy_current_health' : enemy.getCurrentHealth(),
+                'enemy_action' : 'Defends'
+            }
+            return (roundResult)
+        elif(playerAction == self.DEFEND and enemyAction == self.ATTACK):
+            playerDefend = self.takePlayerAction(playerAction)
+            enemyAttack = self.takeEnemyAction(enemyAction)
+            playerAttack = 0
+            
+            damageAmountReduced = int(playerDefend * enemyAttack)
+            actualDamageAmount = enemyAttack - damageAmountReduced
+            self.playerInstance.takeDamage(actualDamageAmount)
+            roundResult = {
+                'player_damage_given' : playerAttack,
+                'player_damage_taken' : actualDamageAmount,
+                'enemy_damage_blocked': damageAmountReduced,
+                'player_current_health': self.playerInstance.getCurrentHealth(),
+                'player_action' : 'Defends',
+                
+                'enemy_damage_given' : actualDamageAmount,
+                'enemy_damage_taken' : playerAttack,
+                'enemy_current_health' : enemy.getCurrentHealth(),
+                'enemy_action' : 'Attacks'
+            }
+            return (roundResult)
+        elif(playerAction == self.DEFEND and enemyAction == self.DEFEND):
+            playerAttack = 0
+            enemyAttack = 0
+            roundResult = {
+                'player_damage_given' : playerAttack,
+                'player_damage_taken' : enemyAttack,
+                'player_current_health': self.playerInstance.getCurrentHealth(),
+                'player_action' : 'Defends',
+                
+                'enemy_damage_given' : enemyAttack,
+                'enemy_damage_taken' : playerAttack,
+                'enemy_current_health' : enemy.getCurrentHealth(),
+                'enemy_action' : 'Defends'
+            }
+            return (roundResult)
+        else:
+            print("enter correct input")
             
             
-            
-        return (roundResult)
+        
             
             
         

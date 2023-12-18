@@ -53,24 +53,7 @@ def getPlayerAbilities(playerClass):
         lightsArmor = Player.PlayerAbilities("Light's Armor", 1, 8)
         return divineJustice, holySalvation, lightsArmor
     
-## EXAMPLE OF HOW TO GET SPECIFIC SPELL INFO ##
 
-#divine = getPlayerAbilities("Paladin")
-
-# Find the Divine Justice ability
-#divine_justice_ability = None
-#for ability in divine:
-#    if ability.name == "Divine Justice":
-#        divine_justice_ability = ability
-#        break
-
-# Print information for Divine Justice if found
-#if divine_justice_ability:
- #
- # 
- #    print(f"Name: {divine_justice_ability.name}, SP Cost: {divine_justice_ability.spCost}, Spell Effect: {divine_justice_ability.spellEffect}")
-#else:
-#    print("Divine Justice not found for the Paladin class.")
 
 
 

@@ -36,15 +36,20 @@ class BattleManager:
     def takePlayerAction(self, playerAction):        
         result = None
         #ADD ATTACK TYPE SELECTION
+        #CALL FUNCTION IN PLAYER TO DETERMINE TYPE OF SWING
+        #ONCE TYPE OF SWING IF ENEMY DEFENDS WITH SAME TYPE -> EXMAPLE -> HIGH SWING HIGH BLOCK = 100% of Damage nullfied
+        #IF INCORRECT SELECTION DEFAULTED DAMAGE NUMBERS WITH DEFENSE VALUE
+        #IMPLEMENT GLANCING BLOW SYSTEM IN WHICH PLAYER DOES HALF DAMAGE -> LOW SWING / MEDIUM BLOCK = GLANCING BLOW 
         
         
         if (playerAction == self.ATTACK):
             result = self.playerInstance.playerAttack()
+            self.test()
         if (playerAction == self.DEFEND):
             result = self.playerInstance.playerDefend()
         
         return result
-    
+
     def getEnemyAction(self):
         enemyActionSelection = random.randint(1, 2)
         return enemyActionSelection

@@ -1,6 +1,18 @@
 
 
 class BaseCharacter:
+    def __init__(self, baseClass, hitPoints, attack, maxDamage, defense, spellPoints):
+        self.currentHealth = hitPoints
+        self.spellPoints = spellPoints        
+        self.hitPoints = hitPoints        
+        self.maxDamage = maxDamage
+        self.defense = defense        
+        self.characterClass = baseClass
+        self.attack = attack
+
+    def getCharacterClass(self):
+        return self.characterClass
+
     #can add any objects in the init to display all
     def __str__(self) -> str:
         return (

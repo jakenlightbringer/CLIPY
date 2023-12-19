@@ -1,6 +1,5 @@
 from Spider import Spider
 from Paladin import PaladinClass
-import startPlayer
 import random
 
 # Need figure out way to determine what enemy passed into the game loop
@@ -11,13 +10,20 @@ class BattleManager:
     DEFEND = 2
     PLAYER_STATS = 3
     ENEMY_STATS = 4
-    #need a get playerClass function to initilize the player
-    def __init__(self, playerInstance):
-        self.playerInstance = playerInstance
+    
     currentEnemy = Spider()    
     
+    #need a get playerClass function to initilize the player
+    def setPlayer(self, player):
+        self.playerInstance = player
+        
+    #TODO
+    def getStartingClass():
+        return PaladinClass()
+
     def getEnemyClassSelection(self, battleCount):
-        return self.currentEnemy        
+        return self.currentEnemy
+        
     def takePlayerAction(self, playerAction):        
         result = None
         

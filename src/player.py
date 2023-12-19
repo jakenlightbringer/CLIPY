@@ -26,18 +26,7 @@ NameList = [
 
 class Player(BaseCharacter):
     playerName = random.choice(NameList)
-    currentHealth = 0
-    
-    def __init__(self, baseClass, hitPoints, attack, maxDamage, defense, spellPoints, maxInventorySpace):
-        self.currentHealth = hitPoints
-        self.spellPoints = spellPoints        
-        self.hitPoints = hitPoints        
-        self.maxDamage = maxDamage
-        self.defense = defense        
-        self.name = baseClass
-        self.attack = attack
-        
-        
+    currentHealth = 0                
 
     def setPlayerName(self, name):
         self.playerName = name

@@ -1,15 +1,18 @@
 from battlemanager import BattleManager
 from gamestats import GameStats
-import startPlayer
 import random
 from player import Player
+
+battleMgr = BattleManager()
+playerInstance = BattleManager.getStartingClass()
+battleMgr.setPlayer(playerInstance)
+
 
 
 def gameLoop(playerInstance):
     #determine battle count
     battleCount = 0
-
-    battleMgr = BattleManager(playerInstance)
+    
     gameStats = GameStats()
 
     #todo handle player death and/or game exit
@@ -24,8 +27,8 @@ def gameLoop(playerInstance):
             gameStats.addDamageTaken(damage['player_damage_taken'])
             gameStats.addDamageDealt(damage['player_damage_given'])
             gameStats.incrementRound()
-            print(f"{playerInstance.name} {damage['player_action']}, dealing {damage['player_damage_given']} damage. {playerInstance.name} has {damage['player_current_health']} remaining health")
-            print(f"{newEnemy.name} {damage['enemy_action']} dealing {damage['enemy_damage_given']} damage. {newEnemy.name} has {damage['enemy_current_health']} remaining health.")
+            print(f"{playerInstance.getPlayerName()} {damage['player_action']}, dealing {damage['player_damage_given']} damage. {playerInstance.getPlayerName()} has {damage['player_current_health']} remaining health")
+            print(f"{newEnemy.getCharacterClass()} {damage['enemy_action']} dealing {damage['enemy_damage_given']} damage. {newEnemy.getCharacterClass()} has {damage['enemy_current_health']} remaining health.")
             #print(newEnemy.getCurrentHealth())
         if(newEnemy.getCurrentHealth() <= 0 and playerInstance.getCurrentHealth() >= 0):
             print("Youve Defeated your Enemy!\n")
@@ -37,10 +40,9 @@ def gameLoop(playerInstance):
     
 
 def main():
-    playerInstance = startPlayer.getClass()
     playerName = playerInstance.getPlayerName()
     
-    if playerInstance.name == "Paladin":
+    if playerInstance.getCharacterClass() == "Paladin":
         print("\nYou survey the battlefield before you. The crescendo and clash of plate scream across the wartorn barrens.")
         print(f"Brother {playerName}, a voice calls out. Brother Eziekiel and Brother Addonis have been taken by the scorpids into the cave")
         print("You turn to see the aracnid creatures dragging away two of your fellow brethren into the dark lair")

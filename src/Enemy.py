@@ -5,15 +5,15 @@ from basecharacter import BaseCharacter
 class Enemy(BaseCharacter):
     currentHealth = 0
 
-    def __init__(self, name, spellPoints, defense, hitPoints, attack, maxDamage):
-        self.name = name
-        self.spellPoints = spellPoints
-        self.defense = defense
-        self.hitPoints = hitPoints
-        self.attack = attack
-        self.ability = None
-        self.currentHealth = hitPoints
-        self.maxDamage = maxDamage
+#    def __init__(self, name, spellPoints, defense, hitPoints, attack, maxDamage):
+#        self.name = name
+#        self.spellPoints = spellPoints
+#        self.defense = defense
+#        self.hitPoints = hitPoints
+#        self.attack = attack
+#        self.ability = None
+#        self.currentHealth = hitPoints
+#        self.maxDamage = maxDamage
     
     def enemyAttackValue(self):
         enemyAttack = random.randrange(self.attack, self.maxDamage)

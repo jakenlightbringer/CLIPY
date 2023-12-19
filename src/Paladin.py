@@ -8,9 +8,6 @@ class PaladinClass(Player):
     BASE_SPELLPOINTS = 3
     BASE_MAX_DAMAGE = 28
     
-
-
-    
     def __init__(self):
         super().__init__("Paladin", self.DEFAULT_HEALTH, self.BASE_ATTACK, self.BASE_MAX_DAMAGE, self.BASE_DEFENSE, self.BASE_SPELLPOINTS)
     
@@ -18,7 +15,10 @@ class PaladinClass(Player):
         playerAttackValue = random.randrange(self.BASE_ATTACK, self.BASE_MAX_DAMAGE)
         return playerAttackValue
     
-    def getInventorySpace(self):
-        return self.MAX_INVENTORY_SPACE
-
-
+    '''
+    def getPlayerAbilities(playerClass):
+            divineJustice = Player.PlayerAbilities("Divine Justice", 2, 40)
+            holySalvation = Player.PlayerAbilities("Holy Salvation", 1, 30)
+            lightsArmor = Player.PlayerAbilities("Light's Armor", 1, 8)
+            return divineJustice, holySalvation, lightsArmor
+    '''

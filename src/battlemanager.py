@@ -11,7 +11,7 @@ class BattleManager:
     PLAYER_STATS = 3
     ENEMY_STATS = 4
     
-    currentEnemy = Spider()    
+    currentEnemy = Spider() 
     
     #need a get playerClass function to initilize the player
     def setPlayer(self, player):
@@ -23,11 +23,17 @@ class BattleManager:
     
 
     def getEnemyClassSelection(self, battleCount):
-        return self.currentEnemy
+        if (battleCount == 1):
+            return self.currentEnemy
+        else:
+            return self.getNewEnemy()
     
     #can be changes to get new enemy -> randomized enemy next
-    def resetEnemy(self):
-        self.currentEnemy = Spider()
+    def getNewEnemy(self):
+        self.currentEnemy = Spider() #Can be changed to random enemy in future
+        return self.currentEnemy
+    
+     
     
     def takePlayerAction(self, playerAction):        
         result = None

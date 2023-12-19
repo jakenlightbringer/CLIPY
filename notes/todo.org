@@ -45,9 +45,10 @@ Paladin
         weight, display
     self.Inventory compareItems
 
-Loot Class
-    specific items 
-
 List of Helmets/Gloves/Shoes
     Choose randomly from List
     assign ranom ability or attributes on pickup
+
+
+* Inventory System
+Create a system in which the player can pickup loot from killed enemies or skip on the loot, give option to 

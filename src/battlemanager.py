@@ -35,6 +35,7 @@ class BattleManager:
              
     def takePlayerAction(self, playerAction):        
         result = None
+        #ADD ATTACK TYPE SELECTION
         
         
         if (playerAction == self.ATTACK):

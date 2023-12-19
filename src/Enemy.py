@@ -5,18 +5,18 @@ from basecharacter import BaseCharacter
 class Enemy(BaseCharacter):
     currentHealth = 0
 
-    def __init__(self, name, BASE_SP, BASE_DEFENSE, BASE_HITPOINTS, BASE_ATTACK, BASE_MAX_DAMAGE):
+    def __init__(self, name, spellPoints, defense, hitPoints, attack, maxDamage):
         self.name = name
-        self.BASE_SP = BASE_SP
-        self. BASE_DEFENSE = BASE_DEFENSE
-        self.BASE_HITPOINTS = BASE_HITPOINTS
-        self.BASE_ATTACK = BASE_ATTACK
+        self.spellPoints = spellPoints
+        self.defense = defense
+        self.hitPoints = hitPoints
+        self.attack = attack
         self.ability = None
-        self.currentHealth = BASE_HITPOINTS
-        self.BASE_MAX_DAMAGE = BASE_MAX_DAMAGE
+        self.currentHealth = hitPoints
+        self.maxDamage = maxDamage
     
     def enemyAttackValue(self):
-        enemyAttack = random.randrange(self.BASE_ATTACK, self.BASE_MAX_DAMAGE)
+        enemyAttack = random.randrange(self.attack, self.maxDamage)
         return enemyAttack
 
     def getCurrentHealth(self):
@@ -30,7 +30,7 @@ class Enemy(BaseCharacter):
         pass
         #define enenmy attack logic to be passed to battlemanager
     def enemyDefend(self):
-        damageReduction = self.BASE_DEFENSE / 100
+        damageReduction = self.defense / 100
         return damageReduction
 
     

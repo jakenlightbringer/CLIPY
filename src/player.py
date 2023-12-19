@@ -42,9 +42,6 @@ class Player(BaseCharacter):
         damageReduction = self.defense / 100
         return damageReduction
         
-    def getCurrentHealth(self):
-        return self.currentHealth
-    
     def takeDamage(self, damageValue):
         damageValue = int(damageValue)
         self.currentHealth = self.currentHealth - damageValue

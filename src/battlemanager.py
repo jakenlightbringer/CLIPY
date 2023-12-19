@@ -21,20 +21,18 @@ class BattleManager:
     def getStartingClass():
         return PaladinClass()
     
-
-    def getEnemyClassSelection(self, battleCount):
-        if (battleCount == 1):
-            return self.currentEnemy
-        else:
-            return self.getNewEnemy()
+    def getCurrentEnemy(self):
+        return self.currentEnemy        
     
     #can be changes to get new enemy -> randomized enemy next
-    def getNewEnemy(self):
-        self.currentEnemy = Spider() #Can be changed to random enemy in future
+    def getNewEnemy(self, battleCount):
+        if (battleCount == 1):
+            self.currentEnemy = Spider() 
+        else:
+            self.currentEnemy = Spider() #Will be changed to random enemy in future
+
         return self.currentEnemy
-    
-     
-    
+             
     def takePlayerAction(self, playerAction):        
         result = None
         
@@ -64,11 +62,9 @@ class BattleManager:
     def getCombatantsDamageOuput(self, playerAction, initiative):
         battleCount = 1
         
-        enemy = self.getEnemyClassSelection(battleCount)
-
-            
-        enemyAction = self.getEnemyAction()
-                
+        enemy = self.getCurrentEnemy()
+    
+        enemyAction = self.getEnemyAction()                
         
         if(playerAction == self.ATTACK and enemyAction == self.ATTACK):
             playerAttack = self.takePlayerAction(playerAction)            

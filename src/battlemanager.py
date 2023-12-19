@@ -17,13 +17,18 @@ class BattleManager:
     def setPlayer(self, player):
         self.playerInstance = player
         
-    #TODO
+    #TODO Add player input to select class return class wanted
     def getStartingClass():
         return PaladinClass()
+    
 
     def getEnemyClassSelection(self, battleCount):
         return self.currentEnemy
-        
+    
+    #can be changes to get new enemy -> randomized enemy next
+    def resetEnemy(self):
+        self.currentEnemy = Spider()
+    
     def takePlayerAction(self, playerAction):        
         result = None
         

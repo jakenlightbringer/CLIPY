@@ -12,13 +12,14 @@ battleMgr.setPlayer(playerInstance)
 def gameLoop(playerInstance):
     #determine battle count
     battleCount = 0
-    
     gameStats = GameStats()
 
-    #todo handle player death and/or game exit
-    while(battleCount < 1):
+    #TODO handle player death and/or game exit
+    while(True):
+        
         gameStats.incrementRound()
-        battleCount += 1     
+        battleCount += 1  
+        print(f"BATTLE:{battleCount}")   
         newEnemy = battleMgr.getEnemyClassSelection(battleCount)
 
         while(playerInstance.getCurrentHealth() >= 0 and newEnemy.getCurrentHealth() >= 0):
@@ -34,9 +35,12 @@ def gameLoop(playerInstance):
             print("Youve Defeated your Enemy!\n")
             gameStats.incrementEnemeiesDefeated()
             print(gameStats)
+            battleMgr.resetEnemy()
+            #battleCount += 1 
         elif(newEnemy.getCurrentHealth() >= 0 and playerInstance.getCurrentHealth() <= 0):
             print("You've been defeated!")
             print(gameStats)
+            break
     
 
 def main():
@@ -49,6 +53,7 @@ def main():
         print("Just as you begin to walk towards the lair, an aracnid deformation leaps out towards you.")
 
         gameLoop(playerInstance)
+        
 
 if __name__ == "__main__":
     main()

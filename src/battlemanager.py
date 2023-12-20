@@ -44,7 +44,7 @@ class BattleManager:
         
         if (playerAction == self.ATTACK):
             result = self.playerInstance.playerAttack()
-            self.test()
+           
         if (playerAction == self.DEFEND):
             result = self.playerInstance.playerDefend()
         

@@ -35,8 +35,8 @@ def gameLoop(playerInstance):
             print("Youve Defeated your Enemy!\n")
             gameStats.incrementEnemeiesDefeated()
             print(gameStats)
-            #Calls Reset enemy to create new Enemy instance
-            battleMgr.resetEnemy()
+            
+            
             #battleCount += 1 
         elif(newEnemy.getCurrentHealth() >= 0 and playerInstance.getCurrentHealth() <= 0):
             print("You've been defeated!")

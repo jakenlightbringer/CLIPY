@@ -105,7 +105,9 @@ class BattleManager:
             enemyDefenceStance = self.currentEnemy.getEnemyDefenseStance()
             if(playerAttackSwing == enemyDefenceStance):
                 playerAttack = 0
-                print(f"{self.currentEnemy.name} blocks your swing perfectly!")
+                print(f"{self.currentEnemy.getCharacterClass()} blocks your swing perfectly!")
+                actualDamageAmount = 0
+                damageAmountReduced = 0
             else:
                 #Defense Calculation -> Gets the decimal multiplies by player attack to get damage reduction number -> Subtracts from the attack
                 damageAmountReduced = int(enemyDefend * playerAttack)
@@ -134,8 +136,10 @@ class BattleManager:
             enemyAttackSwing = self.currentEnemy.getEnemyAttackSwing()
             
             if(playerDefenseStance == enemyAttackSwing):
-                print(f'{self.playerInstance.name} perfectly blocks {self.currentEnemy.name} swing')
+                print(f'{self.playerInstance.name} perfectly blocks {self.currentEnemy.getCharacterClass()} swing')
                 enemyAttack = 0
+                actualDamageAmount = 0
+                damageAmountReduced = 0
             else:
                 damageAmountReduced = int(playerDefend * enemyAttack)
                 actualDamageAmount = enemyAttack - damageAmountReduced

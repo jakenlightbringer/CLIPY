@@ -22,3 +22,5 @@ class PaladinClass(Player):
             lightsArmor = Player.PlayerAbilities("Light's Armor", 1, 8)
             return divineJustice, holySalvation, lightsArmor
     '''
+
+

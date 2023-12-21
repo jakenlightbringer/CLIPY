@@ -1,6 +1,7 @@
 import random
 from ability import Ability
 from basecharacter import BaseCharacter
+from constants import ATTACK_LOW, ATTACK_HIGH, ATTACK_MID, DEFEND_LOW, DEFEND_HIGH, DEFEND_MID
 
 class Enemy(BaseCharacter):
     currentHealth = 0
@@ -32,5 +33,15 @@ class Enemy(BaseCharacter):
     def enemyDefend(self):
         damageReduction = self.defense / 100
         return damageReduction
+    
+    def getEnemyAttackSwing(self):
+        swingChoice = [ATTACK_HIGH, ATTACK_MID, ATTACK_LOW]
+        enemySwing = random.choice(swingChoice)
+        return enemySwing
+    def getEnemyDefenseStance(self):
+        defenseStanceChoice = [DEFEND_HIGH, DEFEND_MID, DEFEND_LOW]
+        defenseStance = random.choice(defenseStanceChoice)
+        return defenseStance
+        
 
     

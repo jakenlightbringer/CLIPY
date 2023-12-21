@@ -52,7 +52,6 @@ class BattleManager:
         elif(enemyActionSelection == self.DEFEND):
             enemyDefenseValue = self.currentEnemy.enemyDefend()
             return enemyDefenseValue
-        
     
     #returns damage given    
     def getCombatantsDamageOuput(self, playerAction, initiative):
@@ -67,10 +66,16 @@ class BattleManager:
         if(playerAction == self.ATTACK and enemyAction == self.ATTACK):
             playerAttack = self.takePlayerAction(playerAction)            
             enemyAttack = self.takeEnemyAction(enemyAction)
-            self.playerInstance.takeDamage(enemyAttack)
-            enemy.takeDamage(playerAttack)
-            
-
+            #Attack swing logic
+            playerAttackSwing = self.playerInstance.getPlayerAttackSwing()
+            enemyAttackSwing = self.currentEnemy.getEnemyAttackSwing()
+            if(playerAttackSwing == enemyAttackSwing):
+                playerAttack = 0
+                enemyAttack = 0
+                print("Your blades clash blocking each other")
+            else:
+                self.playerInstance.takeDamage(enemyAttack)
+                enemy.takeDamage(playerAttack)
             roundResult = {
                 'player_damage_given' : playerAttack,
                 'player_damage_taken' : enemyAttack,
@@ -87,10 +92,17 @@ class BattleManager:
             playerAttack = self.takePlayerAction(playerAction)
             enemyDefend = self.takeEnemyAction(enemyAction)
             enemyAttack = 0
-            #Defense Calculation -> Gets the decimal multiplies by player attack to get damage reduction number -> Subtracts from the attack
-            damageAmountReduced = int(enemyDefend * playerAttack)
-            actualDamageAmount = playerAttack - damageAmountReduced
-            enemy.takeDamage(actualDamageAmount)
+            
+            playerAttackSwing = self.playerInstance.getPlayerAttackSwing()
+            enemyDefenceStance = self.currentEnemy.getEnemyDefenseStance()
+            if(playerAttackSwing == enemyDefenceStance):
+                playerAttack = 0
+                print(f"{self.currentEnemy.name} blocks your swing perfectly!")
+            else:
+                #Defense Calculation -> Gets the decimal multiplies by player attack to get damage reduction number -> Subtracts from the attack
+                damageAmountReduced = int(enemyDefend * playerAttack)
+                actualDamageAmount = playerAttack - damageAmountReduced
+                enemy.takeDamage(actualDamageAmount)
             
             roundResult = {
                 'player_damage_given' : playerAttack,
@@ -110,9 +122,16 @@ class BattleManager:
             enemyAttack = self.takeEnemyAction(enemyAction)
             playerAttack = 0
             
-            damageAmountReduced = int(playerDefend * enemyAttack)
-            actualDamageAmount = enemyAttack - damageAmountReduced
-            self.playerInstance.takeDamage(actualDamageAmount)
+            playerDefenseStance = self.playerInstance.getPlayerDefenseStance()
+            enemyAttackSwing = self.currentEnemy.getEnemyAttackSwing()
+            
+            if(playerDefenseStance == enemyAttackSwing):
+                print(f'{self.playerInstance.name} perfectly blocks {self.currentEnemy.name} swing')
+                enemyAttack = 0
+            else:
+                damageAmountReduced = int(playerDefend * enemyAttack)
+                actualDamageAmount = enemyAttack - damageAmountReduced
+                self.playerInstance.takeDamage(actualDamageAmount)
             roundResult = {
                 'player_damage_given' : playerAttack,
                 'player_damage_taken' : actualDamageAmount,

@@ -49,3 +49,12 @@ class Player(BaseCharacter):
         damageValue = int(damageValue)
         self.currentHealth = self.currentHealth - damageValue
         return self.getCurrentHealth()
+    def getPlayerAttackSwing(self):
+        swingChoice = input("1. High Attack 2. Mid Attack 3. Low Attack\n")
+        return int(swingChoice)
+    def getPlayerDefenseStance(self):
+        defenseStance = input("High Defend 2. Middle Defend 3. Low Defend\n")
+        return defenseStance
+    
+
+

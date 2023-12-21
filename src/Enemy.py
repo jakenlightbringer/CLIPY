@@ -37,8 +37,7 @@ class Enemy(BaseCharacter):
         return enemySwing
     def getEnemyDefenseStance(self):
         defenseStanceChoice = [DEFEND_HIGH, DEFEND_MID, DEFEND_LOW]
-        defenseStance = random.choice(defenseStanceChoice)
-        return defenseStance
+        return (random.choice(defenseStanceChoice))
         
 
     

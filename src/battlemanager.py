@@ -1,5 +1,6 @@
 from Spider import Spider
 from Paladin import PaladinClass
+from wolf import Wolf
 import random
 
 # Need figure out way to determine what enemy passed into the game loop
@@ -12,6 +13,7 @@ class BattleManager:
     ENEMY_STATS = 4
     
     currentEnemy = Spider() 
+    enemyList = [Spider(), Wolf()]
     
     #need a get playerClass function to initilize the player
     def setPlayer(self, player):
@@ -29,22 +31,15 @@ class BattleManager:
         if (battleCount == 1):
             self.currentEnemy = Spider() 
         else:
-            self.currentEnemy = Spider() #Will be changed to random enemy in future
+            self.currentEnemy = random.choice(self.enemyList)
 
         return self.currentEnemy
-             
+        
     def takePlayerAction(self, playerAction):        
         result = None
-        #ADD ATTACK TYPE SELECTION
-        #CALL FUNCTION IN PLAYER TO DETERMINE TYPE OF SWING
-        #ONCE TYPE OF SWING IF ENEMY DEFENDS WITH SAME TYPE -> EXMAPLE -> HIGH SWING HIGH BLOCK = 100% of Damage nullfied
-        #IF INCORRECT SELECTION DEFAULTED DAMAGE NUMBERS WITH DEFENSE VALUE
-        #IMPLEMENT GLANCING BLOW SYSTEM IN WHICH PLAYER DOES HALF DAMAGE -> LOW SWING / MEDIUM BLOCK = GLANCING BLOW 
-        
-        
         if (playerAction == self.ATTACK):
             result = self.playerInstance.playerAttack()
-           
+
         if (playerAction == self.DEFEND):
             result = self.playerInstance.playerDefend()
         
@@ -66,9 +61,7 @@ class BattleManager:
     #returns damage given    
     def getCombatantsDamageOuput(self, playerAction, initiative):
         battleCount = 1
-        
         enemy = self.getCurrentEnemy()
-    
         enemyAction = self.getEnemyAction()                
         
         if(playerAction == self.ATTACK and enemyAction == self.ATTACK):
@@ -77,6 +70,7 @@ class BattleManager:
             #Attack swing logic
             playerAttackSwing = self.playerInstance.getPlayerAttackSwing()
             enemyAttackSwing = self.currentEnemy.getEnemyAttackSwing()
+            
             if(playerAttackSwing == enemyAttackSwing):
                 playerAttack = 0
                 enemyAttack = 0
@@ -84,6 +78,7 @@ class BattleManager:
             else:
                 self.playerInstance.takeDamage(enemyAttack)
                 enemy.takeDamage(playerAttack)
+            
             roundResult = {
                 'player_damage_given' : playerAttack,
                 'player_damage_taken' : enemyAttack,
@@ -95,7 +90,9 @@ class BattleManager:
                 'enemy_current_health' : enemy.getCurrentHealth(),
                 'enemy_action' : 'Attacks'
             }
+            
             return (roundResult)
+        
         elif(playerAction == self.ATTACK and enemyAction == self.DEFEND):
             playerAttack = self.takePlayerAction(playerAction)
             enemyDefend = self.takeEnemyAction(enemyAction)
@@ -103,6 +100,7 @@ class BattleManager:
             
             playerAttackSwing = self.playerInstance.getPlayerAttackSwing()
             enemyDefenceStance = self.currentEnemy.getEnemyDefenseStance()
+            
             if(playerAttackSwing == enemyDefenceStance):
                 playerAttack = 0
                 print(f"{self.currentEnemy.getCharacterClass()} blocks your swing perfectly!")
@@ -126,7 +124,9 @@ class BattleManager:
                 'enemy_current_health' : enemy.getCurrentHealth(),
                 'enemy_action' : 'Defends'
             }
+            
             return (roundResult)
+        
         elif(playerAction == self.DEFEND and enemyAction == self.ATTACK):
             playerDefend = self.takePlayerAction(playerAction)
             enemyAttack = self.takeEnemyAction(enemyAction)
@@ -144,6 +144,7 @@ class BattleManager:
                 damageAmountReduced = int(playerDefend * enemyAttack)
                 actualDamageAmount = enemyAttack - damageAmountReduced
                 self.playerInstance.takeDamage(actualDamageAmount)
+        
             roundResult = {
                 'player_damage_given' : playerAttack,
                 'player_damage_taken' : actualDamageAmount,
@@ -156,7 +157,9 @@ class BattleManager:
                 'enemy_current_health' : enemy.getCurrentHealth(),
                 'enemy_action' : 'Attacks'
             }
+        
             return (roundResult)
+        
         elif(playerAction == self.DEFEND and enemyAction == self.DEFEND):
             playerAttack = 0
             enemyAttack = 0

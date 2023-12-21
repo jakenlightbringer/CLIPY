@@ -20,9 +20,6 @@ class Enemy(BaseCharacter):
         enemyAttack = random.randrange(self.attack, self.maxDamage)
         return enemyAttack
 
-    def getCurrentHealth(self):
-        return self.currentHealth
-    
     def takeDamage(self, damageValue):
         self.currentHealth = self.currentHealth - damageValue
         return self.getCurrentHealth()

@@ -20,7 +20,7 @@ def gameLoop(playerInstance):
         gameStats.incrementRound()
         battleCount += 1  
         print(f"BATTLE:{battleCount}")   
-        newEnemy = battleMgr.getEnemyClassSelection(battleCount)
+        newEnemy = battleMgr.getNewEnemy(battleCount)
 
         while(playerInstance.getCurrentHealth() >= 0 and newEnemy.getCurrentHealth() >= 0):
             playerChoice = int(input("\n1. Attack, 2. Defend, 3. Your Stats, 4. Enemy Stats\n"))
@@ -57,15 +57,6 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
     '''
 
             Enemy & Player Type

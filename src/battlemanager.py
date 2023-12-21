@@ -11,7 +11,7 @@ class BattleManager:
     PLAYER_STATS = 3
     ENEMY_STATS = 4
     
-    currentEnemy = Spider()    
+    currentEnemy = Spider() 
     
     #need a get playerClass function to initilize the player
     def setPlayer(self, player):
@@ -21,25 +21,35 @@ class BattleManager:
     def getStartingClass():
         return PaladinClass()
     
-
-    def getEnemyClassSelection(self, battleCount):
-        return self.currentEnemy
+    def getCurrentEnemy(self):
+        return self.currentEnemy        
     
     #can be changes to get new enemy -> randomized enemy next
-    def resetEnemy(self):
-        self.currentEnemy = Spider()
-    
+    def getNewEnemy(self, battleCount):
+        if (battleCount == 1):
+            self.currentEnemy = Spider() 
+        else:
+            self.currentEnemy = Spider() #Will be changed to random enemy in future
+
+        return self.currentEnemy
+             
     def takePlayerAction(self, playerAction):        
         result = None
+        #ADD ATTACK TYPE SELECTION
+        #CALL FUNCTION IN PLAYER TO DETERMINE TYPE OF SWING
+        #ONCE TYPE OF SWING IF ENEMY DEFENDS WITH SAME TYPE -> EXMAPLE -> HIGH SWING HIGH BLOCK = 100% of Damage nullfied
+        #IF INCORRECT SELECTION DEFAULTED DAMAGE NUMBERS WITH DEFENSE VALUE
+        #IMPLEMENT GLANCING BLOW SYSTEM IN WHICH PLAYER DOES HALF DAMAGE -> LOW SWING / MEDIUM BLOCK = GLANCING BLOW 
         
         
         if (playerAction == self.ATTACK):
             result = self.playerInstance.playerAttack()
+           
         if (playerAction == self.DEFEND):
             result = self.playerInstance.playerDefend()
         
         return result
-    
+
     def getEnemyAction(self):
         enemyActionSelection = random.randint(1, 2)
         return enemyActionSelection
@@ -57,11 +67,9 @@ class BattleManager:
     def getCombatantsDamageOuput(self, playerAction, initiative):
         battleCount = 1
         
-        enemy = self.getEnemyClassSelection(battleCount)
-
-            
-        enemyAction = self.getEnemyAction()
-                
+        enemy = self.getCurrentEnemy()
+    
+        enemyAction = self.getEnemyAction()                
         
         if(playerAction == self.ATTACK and enemyAction == self.ATTACK):
             playerAttack = self.takePlayerAction(playerAction)            

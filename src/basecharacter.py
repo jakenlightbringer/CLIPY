@@ -13,6 +13,9 @@ class BaseCharacter:
     def getCharacterClass(self):
         return self.characterClass
 
+    def getCurrentHealth(self):
+        return self.currentHealth    
+
     #can add any objects in the init to display all
     def __str__(self) -> str:
         return (
